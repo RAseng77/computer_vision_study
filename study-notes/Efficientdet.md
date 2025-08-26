@@ -43,9 +43,7 @@ EfficientDet은 EfficientNet + BiFPN + Compound Scalling 으로 "작고 빠르�
 EfficientDet에서는 단순 합산 대신 학습 가능한 가중치를 줍니다.
   * 각 입력 Feature Map xi 마다 ""양의 가중치 wi >= 0"" 를 부여
   * 융합할 때 단순 합이 아니라 가중 평균으로 계산:
-  * $$
-\text{Output} = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i + \epsilon}
-$$
+  * $\text{Output} = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i + \epsilon}$ 
   * 여기서 𝜖은 0으로 나누는 걸 방지하기 위한 작은 값
   * wi는 학습 중 자동으로 업데이트됨 -> 어떤 Feature가 중요한지 모델이 스스로 배움
 
