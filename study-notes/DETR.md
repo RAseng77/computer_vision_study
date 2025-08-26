@@ -65,7 +65,7 @@ DETR은 박스를 직접 예측하므로, 위치,크기,차이를 정량화해�
   * Query #58 -> 사람 클래스 손실 + 박스 손실
   * Query #91 -> 배경 클래스 손실
 * 나머지는 배경(∅) 클래스로 처리
-* 공식적으로는: $L_{Hungarian} = \sum_{(i,j)\in\sigma} \left[ L_{cls}(y_i, \hat{y}_j) + L_{box}(b_i, \hat{b}_j) \right]$
+* 공식적으로는: $L_{\mathrm{Hungarian}}=\sum_{(i,j)\in\sigma}[\,L_{\mathrm{cls}}(y_i,\hat{y}_j)+L_{\mathrm{box}}(b_i,\hat{b}_j)\,]$
 * 여기서 σ는 Hungarian Algorithm으로 찾은 최적 매칭.
 
 # 한 줄 요약
