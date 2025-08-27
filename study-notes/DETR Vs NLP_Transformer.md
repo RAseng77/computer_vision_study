@@ -60,7 +60,7 @@
 
 * 즉 구조는 비슷하지만 (Encoder-Decoder + Attention), 입력/출력/학습 목적이 달라서 DETR은 Transformer를 "시각적 객체 슬롯 예측기"로 변형한 것 이에요.
 
-# DETR vs NLP Transformer 구조 비교교
+# DETR vs NLP Transformer 구조 비교
 
 ## 1.  Backbone (DETR만 있음)
 * NLP Transformer
