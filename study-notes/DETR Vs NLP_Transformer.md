@@ -60,6 +60,8 @@
 
 * 즉 구조는 비슷하지만 (Encoder-Decoder + Attention), 입력/출력/학습 목적이 달라서 DETR은 Transformer를 "시각적 객체 슬롯 예측기"로 변형한 것 이에요.
 
+# DETR vs NLP Transformer 구조 비교교
+
 ## 1.  Backbone (DETR만 있음)
 * NLP Transformer
   * 따로 없음. 입력 = 단어 임베딩(Word Embedding)
@@ -74,57 +76,6 @@
 
 ## 2. Transformer Encoder
 * NLP Transformer
-  * 입력: 단어 임베딩 시퀀스
-  * Self-Attention을 통해 문맥 정보 교환
-  * 출력: 문맥이 반영된 단어 벡터 시퀀스
-* DETR Transformer
-  * 입력: Backbone Feature (flattened 2D grid)
-  * Multi-Head Self-Attention으로 픽셀/패치 간 전역 관계 학습
-  * 출력: 이미지의 전역 컨텍스트를 반영한 Feature 시퀀스
-
-* 같은 점: Self-Attention 구조 동일
-* 다른 점: NLP는 단어 간 관계, DETR은 이미지 위치 간 관계
-
-## 3. Transformer Decoder
-* NLP Transformer
-  * 입력: 번역할 문장의 이전 단어들(shifted right)
-  * Masked Self-Attention -> 이전 단어까지만 참조
-  * Cross-Attention으로 Encoder 출력(원문)과 상호작용
-  * 출력: 다음 단어 분포
-* DETR Transformer
-  * 입력: Object Query (학습 가능한 고정 벡터들, 예: 100개)
-  * Self-Attention -> Object Query 간 상호작용
-  * Cross-Attention -> Encoder 출력 Feature와 상호작용
-  * 출력: 각 Query가 하나의 "객체 후보" 벡터
-
-* 차이: NLP는 "다음 단어 예측", DETR은 "객체 슬롯 예측"
-
-## 4. Feed-Forward Networks (FFN, Prediction Head)
-* NLP Transformer
-  * Decoder 출력 -> Linear Layer + Softmax -> 다음 단어 확률
-* DETR Transformer
-  * Decoder 출력(Object Query) -> FFN 두 개로 분리
-    1. 클래스 예측 Head: Linear -> Softmax(클래스 + 배경)
-    2. 박스 예측 Head: MLP (3-layer) -> (x, y, w, h)좌표 (normalized)
-
-* 차이: NLP는 단어 확률 1개만, DETR은 "클래스 + 박스 좌표" 두 가지 출력
-
-## 전체 흐름 요약 (DETR)
-1. Backbone (ResNet)
-   * 이미지 입력 -> Feature Map 추출 -> Flatten + Positional Encoding
-2. Encoder (Self-Attention)
-   * Feature들끼리 전역적 관계 학습
-3. Decoder (Object Query + Cross-Attention)
-   * Object Query들이 Feature와 상호작용 -> "이 Query가 담당할 객체 정보" 학습
-4. FFN (Prediction Head)
-   * 각 Query -> (클래스 확률 + 바운딩 박스 좌표)
-5. Hungarian Matching
-   * 출력된 고정 개수의 박스 ↔ 실제 GT 박스 매칭
-6. Loss 계산 (Classification + Box Loss)
-
-## 한 줄 요약
-* NLP Transformer: 단어 시퀀스를 입력받아, 다음 단어를 출력하는 구조
-* DETR Transformer: CNN Backbone Feature를 입력받아, Object Query를 통해 클래스 NLP Transformer
   * 입력: 단어 임베딩 시퀀스
   * Self-Attention을 통해 문맥 정보 교환
   * 출력: 문맥이 반영된 단어 벡터 시퀀스
