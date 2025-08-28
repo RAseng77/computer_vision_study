@@ -15,4 +15,4 @@
   * Overfitting 방지
  
 ## Radom Crop
-''' print("sd")'''
+'print("sd")'
