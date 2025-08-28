@@ -18,3 +18,89 @@
 ```
 transform = transforms.RandomCrop(224);
 ```
+
+## RandomHorizontalFlip()
+```
+transform = transforms.RandomHorizontalFlip(p=0.3)
+```
+
+## RandomVerticalFlip()
+```
+transform = transforms.RandomVerticalFlip()
+```
+
+## RandomRotation
+```
+transform = transforms.RandomRotation(degrees=(-30, 30))
+```
+
+## RandomAffine
+```
+transform = transforms.RandomAffine(degrees=0, translate=(0.1, 0.1))
+```
+
+## ColorJitter
+```
+transform = transforms.ColorJitter(brightness = (0.8, 0.9),
+contrast = (0.4, 0.8), saturation=(0.7,0.9), hue=(-0.2, 0.2))
+```
+
+## RandomAdjustSharpness - Blur
+```
+transform = transforms.RandomAdjustSharpness(0, p=0.5)
+```
+
+## Data Augmentation 종류
+```
+transform = transforms.RandomChoice([
+ transforms.RandomHorizontalFlip(),
+ transforms.RandomRotation(degrees=(-30, 30)),
+])
+
+transform = transforms.RandomApply([
+ transforms.RandomHorizontalFlip(),
+ transforms.RandomRotation(degrees=(-30,30)),
+], p=0.5)
+
+transform = transforms.AutoAugment(transforms.AutoAugmentPolicy.IMAGENET)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
