@@ -15,4 +15,4 @@
   * Overfitting 방지
  
 ## Radom Crop
-'print("sd")'
+transform = transforms.RandomCrop(224);
