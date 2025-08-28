@@ -15,4 +15,6 @@
   * Overfitting 방지
  
 ## Radom Crop
+```
 transform = transforms.RandomCrop(224);
+```
