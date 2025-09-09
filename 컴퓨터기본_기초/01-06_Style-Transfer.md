@@ -23,20 +23,21 @@
 ## 2. Loss function for Neural Style Transfer
 ## (1) Content Loss
 * 콘텐츠 이미지를 유지하기 위해
-*
+* $L_{content} = \tfrac{1}{2} \sum_{i,j} (F_{ij}^{generated} - F_{ij}^{content})^2$
 * 여기서 Fij는 CNN 특정 레이어에서 추출된 feature map 값
 
 ## (2) Style Loss
 * 스타일 이미지를 재현하기 위해 Gram Matrix 사용 (특징 간 상관관계)
+* Gijl​=∑k​Fikl​Fjkl​
 * l: 레이어 번호
-* Style Loss:
+* Style Loss: $L_{style} = \sum_{l} w_l \tfrac{1}{4N_l^2 M_l^2} \sum_{i,j} (G_{ij}^{generated} - G_{ij}^{style})^2$
 
 ## (3) Total Variation Loss (선택적)
 * 결과 이미지가 너무 거칠지 않도록 스무딩 역할
-* 
+* $L_{tv} = \sum_{i,j} \big( (x_{i,j} - x_{i+1,j})^2 + (x_{i,j} - x_{i,j+1})^2 \big)$
 
 ## (4) 최종 Loss
-*
+* $L_{total} = \alpha L_{content} + \beta L_{style} + \gamma L_{tv}$
 * α: 콘텐츠 가중치
 * β: 스타일 가중치
 * γ: Total Variation 가중치
