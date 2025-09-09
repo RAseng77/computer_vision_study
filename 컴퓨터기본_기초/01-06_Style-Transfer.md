@@ -28,7 +28,7 @@
 
 ## (2) Style Loss
 * 스타일 이미지를 재현하기 위해 Gram Matrix 사용 (특징 간 상관관계)
-* Gijl​=∑k​Fikl​Fjkl​
+* $G_{ij}^l = \sum_k F_{ik}^l F_{jk}^l$
 * l: 레이어 번호
 * Style Loss: $L_{style} = \sum_{l} w_l \tfrac{1}{4N_l^2 M_l^2} \sum_{i,j} (G_{ij}^{generated} - G_{ij}^{style})^2$
 
